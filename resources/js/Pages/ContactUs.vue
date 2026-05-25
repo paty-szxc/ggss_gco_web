@@ -29,9 +29,9 @@
                     
                     <v-col cols="12" md="6" class="px-md-8">
                         <div class="mb-6">
-                                    <!-- NOTE - email -->
+                                    <!-- NOTE - client_email -->
                             <div class="text-h6 font-weight-bold text-primary mb-1 textFont">
-                                <v-icon start color="red">mdi-email</v-icon>
+                                <v-icon start color="red">mdi-client_email</v-icon>
                                 Email
                             </div>
                             <p class="text-body-1 ml-8 textFont">
@@ -58,7 +58,6 @@
                                 <a href="https://www.facebook.com/ggsurv" target="_blank" class="d-flex align-center text-decoration-none">
                                     <v-icon color="#1877F2" size="x-large">mdi-facebook</v-icon>
                                 </a>
-                                
                                 <a href="https://www.instagram.com/gg.surv/" target="_blank" class="d-flex align-center text-decoration-none">
                                     <v-icon color="#E4405F" size="x-large">mdi-instagram</v-icon>
                                 </a>
@@ -71,11 +70,12 @@
                     <v-col cols="12" md="10">
                         <v-card class="pa-8 rounded-xl elevation-3 bg-white">
                             <p class="font-weight-bold mb-6 text-center text-h4 textFont text-primary" style="font-size: larger;">Send Us an Inquiry</p>
-                            <v-form @submit.prevent="submitForm">
+                            <v-form ref="formRef" @submit.prevent="submitForm">
                                 <v-row>
                                     <v-col cols="12" md="6">
                                         <v-autocomplete 
                                             v-model="form.services_needed"
+                                            :rules="[rules.required]"
                                             multiple
                                             :items="services" 
                                             item-title="name"
@@ -88,46 +88,68 @@
                                     </v-col>
                                     <v-col cols="12" md="6">
                                         <v-text-field 
-                                            v-model="form.purpose" label="Purpose"  color="primary" class="textFont">
-                                        </v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" md="6">
-                                        <v-text-field 
-                                            v-model="form.area" label="Area" 
-                                            color="primary" class="textFont">
-                                        </v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" md="6">
-                                        <v-text-field 
-                                            v-model="form.location" label="Location"  color="primary" class="textFont">
-                                        </v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" md="6">
-                                        <v-text-field 
-                                            v-model="form.contact_no" label="Contact No."  color="primary" class="textFont">
-                                        </v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" md="6">
-                                        <v-text-field 
-                                            v-model="form.email" label="Email"
-                                            type="email"
-                                            color="primary" class="textFont">
-                                        </v-text-field>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <v-file-input
-                                            v-model="form.attachment"
-                                            prepend-inner-icon="mdi-paperclip"
-                                            prepend-icon=""
-                                            label="Attachment for Titles & Other docs"
-                                            color="primary"
+                                            v-model="form.purpose"
+                                            :rules="[rules.required, rules.purpose]"
+                                            label="Purpose"  
+                                            color="primary" 
                                             class="textFont">
-                                        </v-file-input>
+                                        </v-text-field>
                                     </v-col>
+                                    <v-col cols="12" md="6">
+                                        <v-text-field 
+                                            v-model="form.area"
+                                            :rules="[rules.required, rules.area]"
+                                            label="Area" 
+                                            color="primary" 
+                                            class="textFont">
+                                        </v-text-field>
+                                    </v-col>
+                                    <v-col cols="12" md="6">
+                                        <v-text-field 
+                                            v-model="form.location"
+                                            :rules="[rules.required, rules.location]"
+                                            label="Location"  
+                                            color="primary" 
+                                            class="textFont">
+                                        </v-text-field>
+                                    </v-col>
+                                    <v-col cols="12" md="6">
+                                        <v-text-field 
+                                            v-model="form.client_name"
+                                            :rules="[rules.required, rules.client_name]"
+                                            label="Name of Client"  
+                                            color="primary" 
+                                            class="textFont">
+                                        </v-text-field>
+                                    </v-col>
+                                    <v-col cols="12" md="6">
+                                        <v-text-field 
+                                            v-model="form.contact_no"
+                                            :rules="[rules.required, rules.contact_no]"
+                                            maxLength="11"
+                                            label="Contact No."
+                                            @input="form.contact_no = form.contact_no.replace(/\D/g, '')"
+                                            counter="11"  
+                                            color="primary" 
+                                            class="textFont">
+                                        </v-text-field>
+                                    </v-col>
+                                    <v-col cols="12" md="6">
+                                        <v-text-field 
+                                            v-model="form.client_email"
+                                            :rules="[rules.required, rules.client_email]"
+                                            label="Email"
+                                            type="client_email"
+                                            color="primary" 
+                                            class="textFont">
+                                        </v-text-field>
+                                    </v-col>
+
                                 </v-row>
-                                <v-btn 
+                                <v-btn
+                                    :loading="isSubmitting"
                                     type="submit" 
-                                    color="primary" 
+                                    color="primary"
                                     size="large" 
                                     block 
                                     class="mt-4 textFont elevation-2 text-none font-weight-bold">
@@ -137,7 +159,6 @@
                         </v-card>
                     </v-col>
                 </v-row>
-
             </v-col>
         </v-row>
     </v-container>
@@ -147,41 +168,70 @@
 import { ref, onMounted } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import axios from 'axios';
+import emailjs from '@emailjs/browser';
+
+const isSubmitting = ref(false)
+const formRef = ref(null)
+
+const rules = {
+    required: v => !!v || 'This field is required',
+    email: v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    contact_no: v => {
+        const pattern = /^\d{11}$/;
+        return pattern.test(v) || 'Contact number must be exactly 11 digits';
+    },
+};
 
 const form = useForm({
     services_needed: [],
     purpose: '',
     area: '',
     location: '',
-    attachment: [],
     contact_no: '',
-    email: '',
+    client_email: '',
+    client_name: '',
 })
 
 const services = ref([])
 
-const submitForm = () => {
-    const file = (form.attachment && form.attachment.length > 0) ? form.attachment[0] : null
-
-    form.transform((data) => ({
-        ...data,
-        attachment: file,
-        services_needed: Array.isArray(data.services_needed) ? data.services_needed.join(', ') : data.services_needed,
-    })).post(route('contact.store'), {
-        preserveScroll: true,
-        onSuccess: () => {
-            alert('Your inquiry has been sent successfully!')
-            form.reset()
-        },
-        onError: () => {
-            alert('There was an issue sending your inquiry. Please check your inputs.')
+const submitForm = async () => {
+    const { valid } = await formRef.value.validate()
+    if(!valid) return
+    isSubmitting.value = true
+    try{
+        const templateParams = {
+            //these keys must match the {{ variables }} in your EmailJS Template EXACTLY
+            name: form.client_name,
+            services_needed: Array.isArray(form.services_needed) ? form.services_needed.join(', ') : form.services_needed,
+            purpose: form.purpose,
+            area: form.area,
+            location: form.location,
+            contact_no: form.contact_no,
+            client_email: form.client_email,
         }
-    })
+
+        const response = await emailjs.send(
+            'service_o9n71yr',     //service ID
+            'template_ki6tm14',    //template ID
+            templateParams,
+            '2qEbF-bGjC43Lcyx2'    //public key
+        )
+
+        console.log('SUCCESS!', response.status, response.text)
+        alert('Your inquiry has been sent successfully!')
+        form.reset()
+        formRef.value.resetValidation()
+    }catch(error){
+        console.error('EmailJS Error:', error)
+        alert('There was an issue sending your inquiry. Please check your network and try again.')
+    }finally{
+        isSubmitting.value = false
+    }
 }
 
 const fetchServices = async () => {
     try{
-        const res = await axios.get('/get_services')
+        const res = await axios.get('get_services')
         services.value = res.data
     }
     catch(error){

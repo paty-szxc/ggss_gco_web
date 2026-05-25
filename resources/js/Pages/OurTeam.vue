@@ -4,94 +4,94 @@
         <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/pete.jpg" alt="Jen" class="profile-img">
-                    <h6 class="font-weight-bold">Engr. Peter June Alaon</h6>
-                    <p class="text-subtitle-3">Geodetic Engineer <br> President</p>
+                    <img :src="$asset('images/pete.jpg')" alt="Jen" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Engr. Peter June Alaon</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Geodetic Engineer <br> President</p>
                 </v-card>
             </v-col>
         </v-row>
         <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/jen.jpg" alt="Jen" class="profile-img">
-                    <h6 class="font-weight-bold">Jenny Rose Masaga</h6>
-                    <p class="text-subtitle-3">Admin Manager</p>
+                    <img :src="$asset('images/jen.jpg')" alt="Jen" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Jenny Rose Masaga</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Admin Manager</p>
                 </v-card>
             </v-col>
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/juls.jpg" alt="Juls" class="profile-img">
-                    <h6 class="font-weight-bold">Julius Arenz Calinao</h6>
-                    <p class="text-subtitle-3">Operations Manager</p>
+                    <img :src="$asset('images/juls.jpg')" alt="Juls" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Julius Arenz Calinao</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Operations Manager</p>
                 </v-card>
             </v-col>
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/arnold.jpg" alt="Arnold" class="profile-img">
-                    <h6 class="font-weight-bold">Arnold Bryan Masaga</h6>
-                    <p class="text-subtitle-3">Construction Manager</p>
-                </v-card>
-            </v-col>
-        </v-row>
-        <v-row justify="center" align="center">
-            <v-col cols="12" sm="4" class="d-flex justify-center">
-                <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/paulo.png" alt="Paulo" class="profile-img">
-                    <h6 class="font-weight-bold">Dean Paulo Villena</h6>
-                    <p class="text-subtitle-3">Senior Land Specialist</p>
-                </v-card>
-            </v-col>
-            <v-col cols="12" sm="4" class="d-flex justify-center">
-                <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/shane.jpg" alt="Shane" class="profile-img">
-                    <h6 class="font-weight-bold">Engr. Maryneil Shane Bertiz</h6>
-                    <p class="text-subtitle-3">Geodetic Engineer - Senior Hydrographer</p>
-                </v-card>
-            </v-col>
-            <v-col cols="12" sm="4" class="d-flex justify-center">
-                <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/jes.jpg" alt="Jes" class="profile-img">
-                    <h6 class="font-weight-bold">Engr. Jessalyn Sibuyo</h6>
-                    <p class="text-subtitle-3">Junior Geodetic Engineer</p>
+                    <img :src="$asset('images/arnold.jpg')" alt="Arnold" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Arnold Bryan Masaga</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Construction Manager</p>
                 </v-card>
             </v-col>
         </v-row>
         <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/kugs.jpg" alt="Kugs" class="profile-img">
-                    <h6 class="font-weight-bold">Leonard Ray Alaon</h6>
-                    <p class="text-subtitle-3">Surveyor</p>
+                    <img :src="$asset('images/paulo.png')" alt="Paulo" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Dean Paulo Villena</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Senior Land Specialist</p>
                 </v-card>
             </v-col>
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/david.jpg" alt="Dave" class="profile-img">
-                    <h6 class="font-weight-bold">David Ralph Dy</h6>
-                    <p class="text-subtitle-3">Survey Aide / Maintenance</p>
+                    <img :src="$asset('images/shane.jpg')" alt="Shane" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Engr. Maryneil Shane Bertiz</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Geodetic Engineer - Senior Hydrographer</p>
                 </v-card>
             </v-col>
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/batman.jpg" alt="Batman" class="profile-img">
-                    <h6 class="font-weight-bold">Jobelle Sansan</h6>
-                    <p class="text-subtitle-3">Survey Aide / Maintenance</p>
+                    <img :src="$asset('images/jes.jpg')" alt="Jes" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Engr. Jessalyn Sibuyo</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Junior Geodetic Engineer</p>
                 </v-card>
             </v-col>
         </v-row>
         <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/joshua.jpg" alt="Joshua" class="profile-img">
-                    <h6 class="font-weight-bold">John Joshua Gaan</h6>
-                    <p class="text-subtitle-3">Company Driver</p>
+                    <img :src="$asset('images/kugs.jpg')" alt="Kugs" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Leonard Ray Alaon</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Surveyor</p>
                 </v-card>
             </v-col>
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
-                    <img src="/public/images/john.jpg" alt="John" class="profile-img">
-                    <h6 class="font-weight-bold">Roblette John Tindoc</h6>
-                    <p class="text-subtitle-3">Company Driver</p>
+                    <img :src="$asset('images/david.jpg')" alt="Dave" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">David Ralph Dy</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Survey Aide / Maintenance</p>
+                </v-card>
+            </v-col>
+            <v-col cols="12" sm="4" class="d-flex justify-center">
+                <v-card elevation="0" class="bg-transparent text-center">
+                    <img :src="$asset('images/batman.jpg')" alt="Batman" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Jobelle Sansan</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Survey Aide / Maintenance</p>
+                </v-card>
+            </v-col>
+        </v-row>
+        <v-row justify="center" align="center">
+            <v-col cols="12" sm="4" class="d-flex justify-center">
+                <v-card elevation="0" class="bg-transparent text-center">
+                    <img :src="$asset('images/joshua.jpg')" alt="Joshua" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">John Joshua Gaan</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Company Driver</p>
+                </v-card>
+            </v-col>
+            <v-col cols="12" sm="4" class="d-flex justify-center">
+                <v-card elevation="0" class="bg-transparent text-center">
+                    <img :src="$asset('images/john.jpg')" alt="John" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Roblette John Tindoc</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Company Driver</p>
                 </v-card>
             </v-col>
         </v-row>
@@ -101,7 +101,7 @@
                     <p class="textStyle mb-6">
                         We are a local company that focuses on offering top-notch service while using a variety of surveying skills and methods.
                     </p>
-                    <p class="text-body-1 text-grey-darken-1" style="text-align: justify; line-height: 1.8;">
+                    <p class="text-body-1 textStyle text-grey-darken-1" style="text-align: justify; line-height: 1.8;">
                         Geopete Geodetic Surveying Services is a surveying company with expertise in all areas of surveying, including relocation, verification, topographic, hydrographic, mining, construction, and photogrammetry/mapping surveys throughout the Philippines. We guarantee to give our clients the best and most accurate service possible.
                     </p>
                 </div>
@@ -109,12 +109,11 @@
 
             <v-col cols="12" sm="6" class="d-flex align-center justify-center">
                 <v-img 
-                    src="/public/images/survey.jpg" 
+                    :src="$asset('images/survey.jpg')" 
                     alt="Survey" 
                     class="rounded-lg elevation-4"
                     max-width="100%"
-                    height="500"
-                    cover
+                    contain
                 ></v-img>
             </v-col>
         </v-row>

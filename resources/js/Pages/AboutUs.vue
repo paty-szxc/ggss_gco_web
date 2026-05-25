@@ -4,11 +4,11 @@
             <v-col cols="12" md="7" class="d-flex flex-column justify-center pr-md-10">
                 <h1 class="text-h3 font-weight-bold mb-6 textStyle">About Us</h1>
                 <p class="textStyle">
-                    <u>Geopete Geodetic Surveying Services</u> was founded on May 10, 2021 by Engr. Peter June Alaon, Licensed Geodetic Engineer. GGSS currently offers Land Surveying Services and will soon be offering Land Titling Assistance.
+                    <u>Geopete Geodetic Surveying Services</u> was founded on May 10, 2021 by Engr. Peter June Alaon, Licensed Geodetic Engineer. GGSS currently offers All type of Surveying Services and Land Titling Assistance.
                 </p>
             </v-col>
             <v-col cols="12" md="5" class="d-flex justify-center align-center">
-                <img src="/public/images/boss.png" alt="Engr. Peter June Alaon" class="profile-img"/>
+                <img :src="$asset('images/boss.png')" alt="Engr. Peter June Alaon" class="profile-img"/>
             </v-col>
         </v-row>
         <v-row>

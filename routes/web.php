@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\ServicesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -39,5 +40,7 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/get_services', [ServicesController::class, 'getServices']);
+
+Route::get('/get_gallery_images', [GalleryImageController::class, 'index']);
 
 require __DIR__.'/auth.php';

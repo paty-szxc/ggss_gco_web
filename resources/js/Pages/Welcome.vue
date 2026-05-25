@@ -23,12 +23,13 @@
             <v-spacer></v-spacer>
 
             <div class="d-none d-md-flex">
-                <v-btn class="nav-link-btn textFont" variant="text" @click="scrollToAbout">About Us</v-btn>
-                <v-btn class="nav-link-btn textFont" variant="text" @click="scrollToOurTeam">Our Team</v-btn>
-                <v-btn class="nav-link-btn textFont" variant="text" @click="scrollToServices">Services</v-btn>
-                <v-btn class="nav-link-btn textFont" variant="text" @click="scrollToProjects">Projects</v-btn>
-                <v-btn class="nav-link-btn textFont" variant="text" @click="scrollToGallery">Gallery</v-btn>
-                <v-btn class="nav-link-btn textFont" variant="text" @click="scrollToContact">Contact Us</v-btn>
+                <v-btn class="nav-link-btn textStyle" variant="text" @click="scrollToAbout">About Us</v-btn>
+                <v-btn class="nav-link-btn textStyle" variant="text" @click="scrollToOurTeam">Our Team</v-btn>
+                <v-btn class="nav-link-btn textStyle" variant="text" @click="scrollToServices">Services</v-btn>
+                <v-btn class="nav-link-btn textStyle" variant="text" @click="scrollToProjects">Projects</v-btn>
+                <v-btn class="nav-link-btn textStyle" variant="text" @click="scrollToGallery">Gallery</v-btn>
+                <!-- <v-btn class="nav-link-btn textStyle" variant="text" @click="scrollToReviews">Reviews</v-btn> -->
+                <v-btn class="nav-link-btn textStyle" variant="text" @click="scrollToContact">Contact Us</v-btn>
             </div>
             
             <v-btn icon="mdi-menu" class="d-md-none" variant="text" @click="drawer = !drawer"></v-btn>
@@ -54,6 +55,8 @@
             <OurTeam/>
             <Services/>
             <Gallery/>
+            <Project/>
+            <Reviews/>
             <ContactUs/>
         </v-main>
     </v-app>
@@ -66,6 +69,8 @@ import AboutUs from './AboutUs.vue';
 import OurTeam from './OurTeam.vue';
 import Services from './Services.vue';
 import Gallery from './Gallery.vue';
+import Project from './Project.vue';
+import Reviews from './Reviews.vue';
 import ContactUs from './ContactUs.vue';
 
 const drawer = ref(false);
@@ -88,6 +93,10 @@ const scrollToProjects = () => {
 
 const scrollToGallery = () => {
     document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })
+}
+
+const scrollToReviews = () => {
+    document.getElementById('reviews')?.scrollIntoView({ behavior: 'smooth' })
 }
 
 const scrollToContact = () => {
