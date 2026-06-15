@@ -5,12 +5,12 @@
         <!-- mobile navigation drawer -->
         <v-navigation-drawer v-model="drawer" location="right" temporary>
             <v-list>
-                <v-list-item title="About Us" link></v-list-item>
-                <v-list-item title="Services" link></v-list-item>
-                <v-list-item title="Projects" link></v-list-item>
-                <v-list-item title="Our Team" link></v-list-item>
-                <v-list-item title="Gallery" link></v-list-item>
-                <v-list-item title="Contact Us" link></v-list-item>
+                <v-list-item title="About Us" link @click="scrollToAbout(); drawer = false"></v-list-item>
+                <v-list-item title="Our Team" link @click="scrollToOurTeam(); drawer = false"></v-list-item>
+                <v-list-item title="Services" link @click="scrollToServices(); drawer = false"></v-list-item>
+                <v-list-item title="Projects" link @click="scrollToProjects(); drawer = false"></v-list-item>
+                <v-list-item title="Gallery" link @click="scrollToGallery(); drawer = false"></v-list-item>
+                <v-list-item title="Contact Us" link @click="scrollToContact(); drawer = false"></v-list-item>
             </v-list>
         </v-navigation-drawer>
 
@@ -58,6 +58,7 @@
             <Project/>
             <Reviews/>
             <ContactUs/>
+            <Footer/>
         </v-main>
     </v-app>
 </template>
@@ -72,6 +73,7 @@ import Gallery from './Gallery.vue';
 import Project from './Project.vue';
 import Reviews from './Reviews.vue';
 import ContactUs from './ContactUs.vue';
+import Footer from '@/Components/Footer.vue';
 
 const drawer = ref(false);
 

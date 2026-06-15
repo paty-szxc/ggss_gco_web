@@ -17,7 +17,9 @@ class ContactController extends Controller
             'area' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
             'contact_no' => 'nullable|string|max:255',
-            'email' => 'required|email|max:255',
+            'client_email' => 'required|email|max:255',
+            'client_name' => 'required|name|max:255',
+            'title' => 'required|string|in:yes,no',
             'attachment' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png,zip|max:102400', // 100MB limit
         ]);
 

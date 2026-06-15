@@ -114,6 +114,25 @@
                                         </v-text-field>
                                     </v-col>
                                     <v-col cols="12" md="6">
+                                        <v-radio-group
+                                            class="textFont ml-3"
+                                            color="primary"
+                                            hide-details
+                                            inline
+                                            label="Titled?"
+                                            :rules="[rules.required, rules.title]"
+                                            v-model="form.title">
+                                            <v-radio
+                                                label="Yes"
+                                                value="Yes">
+                                            </v-radio>
+                                            <v-radio
+                                                label="No"
+                                                value="No">
+                                            </v-radio>
+                                        </v-radio-group>
+                                    </v-col>
+                                    <v-col cols="12" md="6">
                                         <v-text-field 
                                             v-model="form.client_name"
                                             :rules="[rules.required, rules.client_name]"
@@ -172,10 +191,10 @@ import emailjs from '@emailjs/browser';
 
 const isSubmitting = ref(false)
 const formRef = ref(null)
-
+    
 const rules = {
     required: v => !!v || 'This field is required',
-    email: v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    client_email: v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
     contact_no: v => {
         const pattern = /^\d{11}$/;
         return pattern.test(v) || 'Contact number must be exactly 11 digits';
@@ -190,6 +209,7 @@ const form = useForm({
     contact_no: '',
     client_email: '',
     client_name: '',
+    title: '',
 })
 
 const services = ref([])
@@ -201,11 +221,12 @@ const submitForm = async () => {
     try{
         const templateParams = {
             //these keys must match the {{ variables }} in your EmailJS Template EXACTLY
-            name: form.client_name,
+            client_name: form.client_name,
             services_needed: Array.isArray(form.services_needed) ? form.services_needed.join(', ') : form.services_needed,
             purpose: form.purpose,
             area: form.area,
             location: form.location,
+            title: form.title,
             contact_no: form.contact_no,
             client_email: form.client_email,
         }
