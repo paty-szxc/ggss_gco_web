@@ -70,23 +70,23 @@
         <div class="space-y-3 text-sm text-gray-400">
           <div class="flex items-start space-x-2">
             <v-icon size="small" color="blue" class="mt-0.5">mdi-map-marker</v-icon>
-            <span>
+            <span class="hover:text-blue-400 transition-colors duration-300">
               Blk 8 Lot 29 Elliston Place Abel St., Pasong Camachile II, General Trias, Cavite
             </span>
           </div>
           <div class="flex items-center space-x-2">
             <v-icon size="small" color="green">mdi-phone</v-icon>
-            <span>0919-077-7886 / 0915-598-5620</span>
+            <span class="hover:text-blue-400 transition-colors duration-300">0919-077-7886 / 0915-598-5620</span>
           </div>
           <div class="flex items-center space-x-2">
             <v-icon size="small" color="red">mdi-email</v-icon>
-            <a href="mailto:geopetesurv@gmail.com" class="hover:text-white transition-colors duration-300">
+            <a class="hover:text-blue-400 transition-colors duration-300">
               geopetesurv@gmail.com
             </a>
           </div>
           <div class="flex items-center space-x-2">
             <v-icon size="small" color="amber">mdi-clock-outline</v-icon>
-            <span>Mon - Sat: 8:00 AM - 5:00 PM</span>
+            <span class="hover:text-blue-400 transition-colors duration-300">Mon - Sat: 8:00 AM - 5:00 PM</span>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
         <span>Designed & Developed with</span>
         <v-icon color="red" class="heart-pulse mx-1" size="small">mdi-heart</v-icon>
         <span>by</span>
-        <span class="font-bold text-gradient-brand text-sm ml-1 cursor-default hover:scale-105 transition-transform duration-300 inline-block">Pat</span>
+        <span class="font-bold text-gradient-brand text-sm ml-1 cursor-default hover:scale-105 transition-transform duration-300 inline-block italic">Pat</span>
       </div>
     </div>
   </footer>
@@ -160,6 +160,10 @@ const scrollTo = (id) => {
 
 .social-icon-btn.instagram:hover {
   background-color: #e4405f;
+}
+
+.social-icon-btn.gmail:hover {
+  background-color: #2cca4f;
 }
 
 .textFont {

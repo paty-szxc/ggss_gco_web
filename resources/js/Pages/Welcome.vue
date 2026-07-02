@@ -52,6 +52,7 @@
                 </div>
             </v-container>
             <AboutUs/>
+            <MissionVision/>
             <OurTeam/>
             <Services/>
             <Gallery/>
@@ -67,6 +68,7 @@
 import { ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AboutUs from './AboutUs.vue';
+import MissionVision from './MissionVision.vue';
 import OurTeam from './OurTeam.vue';
 import Services from './Services.vue';
 import Gallery from './Gallery.vue';

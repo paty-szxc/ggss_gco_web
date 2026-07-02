@@ -31,11 +31,11 @@
                         <div class="mb-6">
                                     <!-- NOTE - client_email -->
                             <div class="text-h6 font-weight-bold text-primary mb-1 textFont">
-                                <v-icon start color="red">mdi-client_email</v-icon>
+                                <v-icon start color="red">mdi-gmail</v-icon>
                                 Email
                             </div>
                             <p class="text-body-1 ml-8 textFont">
-                                <a href="mailto:geopetesurv@gmail.com" class="text-decoration-none textFont">
+                                <a class="text-decoration-none textFont">
                                     geopetesurv@gmail.com
                                 </a>
                             </p>
