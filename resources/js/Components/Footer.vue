@@ -105,7 +105,7 @@
         <span>Designed & Developed with</span>
         <v-icon color="red" class="heart-pulse mx-1" size="small">mdi-heart</v-icon>
         <span>by</span>
-        <span class="font-bold text-gradient-brand text-sm ml-1 cursor-default hover:scale-105 transition-transform duration-300 inline-block italic">Pat</span>
+        <span class="font-bold text-sm ml-1 cursor-default hover:scale-105 transition-transform duration-300 inline-block italic">Pat</span>
       </div>
     </div>
   </footer>

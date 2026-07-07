@@ -41,13 +41,6 @@
         <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
-                    <img :src="$asset('images/paulo.png')" alt="Paulo" class="profile-img">
-                    <h6 class="font-weight-bold textStyle text-center">Dean Paulo Villena</h6>
-                    <p class="text-subtitle-3 textStyle text-center">Senior Land Specialist</p>
-                </v-card>
-            </v-col>
-            <v-col cols="12" sm="4" class="d-flex justify-center">
-                <v-card elevation="0" class="bg-transparent text-center">
                     <img :src="$asset('images/shane.jpg')" alt="Shane" class="profile-img">
                     <h6 class="font-weight-bold textStyle text-center">Engr. Maryneil Shane Bertiz</h6>
                     <p class="text-subtitle-3 textStyle text-center">Geodetic Engineer - Senior Hydrographer</p>
@@ -60,8 +53,6 @@
                     <p class="text-subtitle-3 textStyle text-center">Junior Geodetic Engineer</p>
                 </v-card>
             </v-col>
-        </v-row>
-        <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
                     <img :src="$asset('images/paty.jpg')" alt="Paty" class="profile-img">
@@ -69,6 +60,8 @@
                     <p class="text-subtitle-3 textStyle text-center">Social Media Specialist</p>
                 </v-card>
             </v-col>
+        </v-row>
+        <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
                     <img :src="$asset('images/kugs.jpg')" alt="Kugs" class="profile-img">
@@ -83,8 +76,6 @@
                     <p class="text-subtitle-3 textStyle text-center">Survey Aide / Maintenance</p>
                 </v-card>
             </v-col>
-        </v-row>
-        <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
                     <img :src="$asset('images/batman.jpg')" alt="Batman" class="profile-img">
@@ -92,6 +83,8 @@
                     <p class="text-subtitle-3 textStyle text-center">Survey Aide / Maintenance</p>
                 </v-card>
             </v-col>
+        </v-row>
+        <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
                     <img :src="$asset('images/joshua.jpg')" alt="Joshua" class="profile-img">
