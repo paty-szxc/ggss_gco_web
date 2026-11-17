@@ -101,12 +101,12 @@
       <div>
         &copy; {{ currentYear }} Geopete Geodetic Surveying Services. All rights reserved.
       </div>
-      <div class="flex items-center space-x-1">
+      <!-- <div class="flex items-center space-x-1">
         <span>Designed & Developed with</span>
         <v-icon color="red" class="heart-pulse mx-1" size="small">mdi-heart</v-icon>
         <span>by</span>
         <span class="font-bold text-sm ml-1 cursor-default hover:scale-105 transition-transform duration-300 inline-block italic">Pat</span>
-      </div>
+      </div> -->
     </div>
   </footer>
 </template>
