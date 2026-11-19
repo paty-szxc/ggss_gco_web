@@ -4,19 +4,48 @@
     </IfModule>
 
     RewriteEngine On
-    RewriteBase /ggss_gco_web/
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP:AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Handle Vite/Laravel Asset Rewrites
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Fixed asset rewriting - direct to public folder
+    RewriteCond %{REQUEST_URI} ^/build/assets/
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+    RewriteRule ^build/assets/(.*)$ public/build/assets/$1 [L]
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
+    
+    # Allow access to storage folder
+    RewriteCond %{REQUEST_URI} ^/storage/
+    RewriteCond %{DOCUMENT_ROOT}/public/storage/$1 -f
+    RewriteRule ^storage/(.*)$ public/storage/$1 [L]
+
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# Fix for 500 errors on static assets
+<IfModule mod_mime.c>
+    AddType image/png png
+    AddType font/woff2 woff2
+    AddType font/woff woff
+    AddType application/x-font-ttf ttf
+    AddType application/vnd.ms-fontobject eot
+</IfModule>
+
+# Ensure proper handling of static files
+<FilesMatch "\.(png|jpg|jpeg|gif|woff2|woff|ttf|eot|css|js)$">
+    ErrorDocument 404 default
+    ErrorDocument 500 default
+</FilesMatch>
+
