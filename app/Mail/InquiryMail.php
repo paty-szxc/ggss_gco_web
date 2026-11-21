@@ -4,33 +4,29 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 
 class InquiryMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $inquiryData;
-    public $attachmentPath;
-    public $attachmentName;
-    public $mimeType;
+    public array $inquiryData;
 
-    public function __construct($inquiryData, $attachmentPath = null, $attachmentName = null, $mimeType = null)
+    public function __construct(array $inquiryData)
     {
         $this->inquiryData = $inquiryData;
-        $this->attachmentPath = $attachmentPath;
-        $this->attachmentName = $attachmentName;
-        $this->mimeType = $mimeType;
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Inquiry: ' . ($this->inquiryData['services_needed'] ?? 'General Inquiry'),
-            replyTo: [$this->inquiryData['email']],
+            subject: 'New inquiry from ' . $this->inquiryData['client_name'],
+            replyTo: [
+                new Address($this->inquiryData['client_email'], $this->inquiryData['client_name']),
+            ],
         );
     }
 
@@ -42,18 +38,5 @@ class InquiryMail extends Mailable
                 'inquiryData' => $this->inquiryData,
             ],
         );
-    }
-
-    public function attachments(): array
-    {
-        if ($this->attachmentPath && $this->attachmentName) {
-            return [
-                Attachment::fromPath($this->attachmentPath)
-                    ->as($this->attachmentName)
-                    ->withMime($this->mimeType),
-            ];
-        }
-
-        return [];
     }
 }

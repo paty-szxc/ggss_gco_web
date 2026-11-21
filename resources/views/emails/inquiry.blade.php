@@ -1,22 +1,14 @@
-<x-mail::message>
-# New Inquiry Received
+@component('mail::message')
+# New website inquiry
 
-You have received a new inquiry from your website.
+- **Name of client:** {{ $inquiryData['client_name'] }}
+- **Email:** {{ $inquiryData['client_email'] }}
+- **Contact no.:** {{ $inquiryData['contact_no'] }}
+- **Services needed:** {{ implode(', ', $inquiryData['services_needed']) }}
+- **Purpose:** {{ $inquiryData['purpose'] }}
+- **Area:** {{ $inquiryData['area'] }}
+- **Location:** {{ $inquiryData['location'] }}
+- **Titled:** {{ $inquiryData['title'] }}
 
-**Services Needed:** {{ $inquiryData['services_needed'] ?? 'N/A' }}
-
-**Purpose:** {{ $inquiryData['purpose'] ?? 'N/A' }}
-
-**Contact No:** {{ $inquiryData['contact_no'] ?? 'N/A' }}
-
-**Attachment:** {{ $inquiryData['attachment'] ?? 'N/A' }}
-
-**Email:** {{ $inquiryData['email'] }}
-
-<x-mail::panel>
-Please reply directly to this email to contact the sender.
-</x-mail::panel>
-
-Thanks,<br>
-{{ config('app.name') }}
-</x-mail::message>
+Press Reply to write back to the client directly.
+@endcomponent

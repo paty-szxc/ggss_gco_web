@@ -84,6 +84,10 @@ return [
                 'log',
             ],
         ],
+
+        'resend' => [
+            'transport' => 'resend',
+        ],
     ],
 
     /*
@@ -101,6 +105,8 @@ return [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
+
+    'inquiry_to' => env('INQUIRY_TO_EMAIL'),
 
     /*
     |--------------------------------------------------------------------------
