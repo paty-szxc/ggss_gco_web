@@ -1,4 +1,3 @@
-
 <template>
     <v-container fluid id="contact-us" class="py-16 bg-grey-lighten-4">
         <v-row justify="center">
@@ -71,6 +70,7 @@
                         <v-card class="pa-8 rounded-xl elevation-3 bg-white">
                             <p class="font-weight-bold mb-6 text-center text-h4 textFont text-primary" style="font-size: larger;">Send Us an Inquiry</p>
                             <v-form ref="formRef" @submit.prevent="submitForm">
+                                <input v-model="form.website" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px;">
                                 <v-row>
                                     <v-col cols="12" md="6">
                                         <v-autocomplete 
@@ -158,7 +158,7 @@
                                             v-model="form.client_email"
                                             :rules="[rules.required, rules.client_email]"
                                             label="Email"
-                                            type="client_email"
+                                            type="email"
                                             color="primary" 
                                             class="textFont">
                                         </v-text-field>
@@ -187,18 +187,19 @@
 import { ref, onMounted } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import axios from 'axios';
-import emailjs from '@emailjs/browser';
 
 const isSubmitting = ref(false)
 const formRef = ref(null)
     
 const rules = {
-    required: v => !!v || 'This field is required',
+    required: v => (Array.isArray(v) ? v.length > 0 : !!v) || 'This field is required',
+    purpose: v => !!v || 'This field is required',
+    area: v => !!v || 'This field is required',
+    location: v => !!v || 'This field is required',
+    title: v => !!v || 'This field is required',
+    client_name: v => !!v || 'This field is required',
     client_email: v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-    contact_no: v => {
-        const pattern = /^\d{11}$/;
-        return pattern.test(v) || 'Contact number must be exactly 11 digits';
-    },
+    contact_no: v => /^\d{11}$/.test(v) || 'Contact number must be exactly 11 digits',
 };
 
 const form = useForm({
@@ -210,6 +211,7 @@ const form = useForm({
     client_email: '',
     client_name: '',
     title: '',
+    website: '',
 })
 
 const services = ref([])
@@ -219,32 +221,25 @@ const submitForm = async () => {
     if(!valid) return
     isSubmitting.value = true
     try{
-        const templateParams = {
-            //these keys must match the {{ variables }} in your EmailJS Template EXACTLY
+        await axios.post('/contact', {
             client_name: form.client_name,
-            services_needed: Array.isArray(form.services_needed) ? form.services_needed.join(', ') : form.services_needed,
+            services_needed: form.services_needed,
             purpose: form.purpose,
             area: form.area,
             location: form.location,
             title: form.title,
             contact_no: form.contact_no,
             client_email: form.client_email,
-        }
+            website: form.website,
+        }, { headers: { Accept: 'application/json' } })
 
-        const response = await emailjs.send(
-            'service_o9n71yr',     //service ID
-            'template_ki6tm14',    //template ID
-            templateParams,
-            '2qEbF-bGjC43Lcyx2'    //public key
-        )
-
-        console.log('SUCCESS!', response.status, response.text)
         alert('Your inquiry has been sent successfully!')
         form.reset()
         formRef.value.resetValidation()
     }catch(error){
-        console.error('EmailJS Error:', error)
-        alert('There was an issue sending your inquiry. Please check your network and try again.')
+        const errors = error.response?.data?.errors
+        const firstError = errors ? Object.values(errors)[0][0] : null
+        alert(firstError || 'There was an issue sending your inquiry. Please try again later.')
     }finally{
         isSubmitting.value = false
     }
@@ -252,7 +247,7 @@ const submitForm = async () => {
 
 const fetchServices = async () => {
     try{
-        const res = await axios.get('get_services')
+        const res = await axios.get('/get_services')
         services.value = res.data
     }
     catch(error){
