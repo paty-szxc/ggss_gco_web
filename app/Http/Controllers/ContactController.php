@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    public function store(Request $request){
+    // Resend allows 40 MB per email after Base64 encoding (about 30 MB of raw files),
+    // so keep the combined size of the attachments safely below that.
+    private const MAX_TOTAL_ATTACHMENT_KB = 25600; // 25 MB
+
+    public function store(Request $request)
+    {
         // Hidden "website" field: real visitors never fill it in, bots often do.
         if ($request->filled('website')) {
             return response()->json(['message' => 'Your inquiry has been sent successfully!']);
@@ -25,12 +30,24 @@ class ContactController extends Controller
             'area'              => 'required|string|max:255',
             'location'          => 'required|string|max:255',
             'title'             => 'required|in:Yes,No',
+            'attachments'       => 'nullable|array|max:5',
+            'attachments.*'     => 'file|mimes:pdf,jpg,jpeg,png,doc,docx|max:10240', // 10 MB each
         ]);
+
+        $files = $request->file('attachments', []);
+
+        $totalKb = collect($files)->sum(fn ($file) => $file->getSize() / 1024);
+        if ($totalKb > self::MAX_TOTAL_ATTACHMENT_KB) {
+            return response()->json([
+                'message' => 'The attachments are too large.',
+                'errors'  => ['attachments' => ['The attachments must be 25 MB or less in total.']],
+            ], 422);
+        }
 
         $to = config('mail.inquiry_to') ?: config('mail.from.address');
 
         try {
-            Mail::to($to)->send(new InquiryMail($data));
+            Mail::to($to)->send(new InquiryMail($data, $files));
         } catch (\Throwable $e) {
             Log::error('Inquiry email failed: ' . $e->getMessage());
 

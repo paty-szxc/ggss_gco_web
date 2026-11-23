@@ -9,6 +9,9 @@
 - **Area:** {{ $inquiryData['area'] }}
 - **Location:** {{ $inquiryData['location'] }}
 - **Titled:** {{ $inquiryData['title'] }}
+@if (!empty($attachmentNames))
+- **Attachments:** {{ implode(', ', $attachmentNames) }}
+@endif
 
 Press Reply to write back to the client directly.
 @endcomponent

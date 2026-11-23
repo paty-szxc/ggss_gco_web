@@ -164,6 +164,23 @@
                                         </v-text-field>
                                     </v-col>
 
+                                    <v-col cols="12">
+                                        <v-file-input
+                                            v-model="attachments"
+                                            :rules="[rules.files]"
+                                            label="Attach title or other documents (optional)"
+                                            hint="PDF, JPG, PNG, DOC or DOCX. Up to 5 files, 10 MB each, 25 MB in total."
+                                            persistent-hint
+                                            multiple
+                                            chips
+                                            counter
+                                            show-size
+                                            accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                                            prepend-icon="mdi-paperclip"
+                                            color="primary"
+                                            class="textFont">
+                                        </v-file-input>
+                                    </v-col>
                                 </v-row>
                                 <v-btn
                                     :loading="isSubmitting"
@@ -190,6 +207,7 @@ import axios from 'axios';
 
 const isSubmitting = ref(false)
 const formRef = ref(null)
+const attachments = ref([])
     
 const rules = {
     required: v => (Array.isArray(v) ? v.length > 0 : !!v) || 'This field is required',
@@ -198,6 +216,13 @@ const rules = {
     location: v => !!v || 'This field is required',
     title: v => !!v || 'This field is required',
     client_name: v => !!v || 'This field is required',
+    files: v => {
+        const list = Array.isArray(v) ? v : (v ? [v] : [])
+        if (list.length > 5) return 'You can attach up to 5 files'
+        if (list.some(f => f.size > 10 * 1024 * 1024)) return 'Each file must be 10 MB or smaller'
+        if (list.reduce((sum, f) => sum + f.size, 0) > 25 * 1024 * 1024) return 'Total size must be 25 MB or less'
+        return true
+    },
     client_email: v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
     contact_no: v => /^\d{11}$/.test(v) || 'Contact number must be exactly 11 digits',
 };
@@ -221,20 +246,24 @@ const submitForm = async () => {
     if(!valid) return
     isSubmitting.value = true
     try{
-        await axios.post('/contact', {
-            client_name: form.client_name,
-            services_needed: form.services_needed,
-            purpose: form.purpose,
-            area: form.area,
-            location: form.location,
-            title: form.title,
-            contact_no: form.contact_no,
-            client_email: form.client_email,
-            website: form.website,
-        }, { headers: { Accept: 'application/json' } })
+        const data = new FormData()
+        data.append('client_name', form.client_name)
+        data.append('client_email', form.client_email)
+        data.append('contact_no', form.contact_no)
+        form.services_needed.forEach(service => data.append('services_needed[]', service))
+        data.append('purpose', form.purpose)
+        data.append('area', form.area)
+        data.append('location', form.location)
+        data.append('title', form.title)
+        data.append('website', form.website)
+        const files = Array.isArray(attachments.value) ? attachments.value : (attachments.value ? [attachments.value] : [])
+        files.forEach(file => data.append('attachments[]', file))
+
+        await axios.post('/contact', data, { headers: { Accept: 'application/json' } })
 
         alert('Your inquiry has been sent successfully!')
         form.reset()
+        attachments.value = []
         formRef.value.resetValidation()
     }catch(error){
         const errors = error.response?.data?.errors
