@@ -64,6 +64,13 @@
         <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
+                    <img :src="$asset('images/sela.jpg')" alt="Sela" class="profile-img">
+                    <h6 class="font-weight-bold textStyle text-center">Jossel Joy Basea</h6>
+                    <p class="text-subtitle-3 textStyle text-center">Documentation Officer</p>
+                </v-card>
+            </v-col>
+            <v-col cols="12" sm="4" class="d-flex justify-center">
+                <v-card elevation="0" class="bg-transparent text-center">
                     <img :src="$asset('images/kugs.jpg')" alt="Kugs" class="profile-img">
                     <h6 class="font-weight-bold textStyle text-center">Leonard Ray Alaon</h6>
                     <p class="text-subtitle-3 textStyle text-center">Surveyor</p>
@@ -76,20 +83,13 @@
                     <p class="text-subtitle-3 textStyle text-center">Survey Aide / Maintenance</p>
                 </v-card>
             </v-col>
+        </v-row>
+        <v-row justify="center" align="center">
             <v-col cols="12" sm="4" class="d-flex justify-center">
                 <v-card elevation="0" class="bg-transparent text-center">
                     <img :src="$asset('images/batman.jpg')" alt="Batman" class="profile-img">
                     <h6 class="font-weight-bold textStyle text-center">Jobelle Sansan</h6>
                     <p class="text-subtitle-3 textStyle text-center">Survey Aide / Maintenance</p>
-                </v-card>
-            </v-col>
-        </v-row>
-        <v-row justify="center" align="center">
-            <v-col cols="12" sm="4" class="d-flex justify-center">
-                <v-card elevation="0" class="bg-transparent text-center">
-                    <img :src="$asset('images/joshua.jpg')" alt="Joshua" class="profile-img">
-                    <h6 class="font-weight-bold textStyle text-center">John Joshua Gaan</h6>
-                    <p class="text-subtitle-3 textStyle text-center">Company Driver</p>
                 </v-card>
             </v-col>
             <v-col cols="12" sm="4" class="d-flex justify-center">
